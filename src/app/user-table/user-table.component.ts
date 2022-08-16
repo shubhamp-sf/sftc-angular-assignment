@@ -86,4 +86,25 @@ export class UserTableComponent implements OnInit {
   deleteUser(userId: UserId) {
     this.userService.delete(userId);
   }
+  shouldHide(user: UserElement) {
+    let q = this.userService.searchQuery.toLowerCase();
+    if (!q) {
+      return false;
+    }
+    let searchString = [
+      user.firstName,
+      user.middleName,
+      user.lastName,
+      user.email,
+      user.address,
+      user.phone,
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    if (!searchString.includes(q)) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -32,3 +32,6 @@ body {
 .mat-form-field-without-label .mat-form-field-wrapper {
   padding-bottom: 0;
 }
+tr.hidden {
+  display: none;
+}

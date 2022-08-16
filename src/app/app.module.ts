@@ -46,6 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [],

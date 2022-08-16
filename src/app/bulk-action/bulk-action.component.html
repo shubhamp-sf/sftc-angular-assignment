@@ -3,7 +3,15 @@
     <form class="search-form">
       <mat-form-field appearance="fill">
         <mat-label>Search Users</mat-label>
-        <input matInput type="search" placeholder="" class="search-input" />
+        <input
+          matInput
+          type="search"
+          placeholder=""
+          class="search-input"
+          name="query"
+          [(ngModel)]="query"
+          (ngModelChange)="queryChange($event)"
+        />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </form>

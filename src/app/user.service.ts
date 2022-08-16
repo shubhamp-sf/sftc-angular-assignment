@@ -7,6 +7,7 @@ import { UserElement, UserId } from './user-table/user-table.component';
 })
 export class UserService {
   users: UserElement[] = [];
+  searchQuery: string = '';
   constructor(private http: HttpClient) {}
 
   getAll() {
@@ -27,5 +28,8 @@ export class UserService {
   }
   delete(userId: UserId) {
     this.users = this.users.filter((user) => user.id !== userId);
+  }
+  filter(compareFunction: (user: UserElement) => boolean) {
+    this.users = this.users.filter(compareFunction);
   }
 }
