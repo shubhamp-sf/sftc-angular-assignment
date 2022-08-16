@@ -26,10 +26,32 @@
     "firstName": "John",
     "middleName": "N",
     "lastName": "Jennifer",
-    "email": "user2@gmail.com",
+    "email": "user3@gmail.com",
     "address": "India",
     "phone": "8500035699",
     "role": 3,
     "dob": "1999-07-01"
+  },
+  {
+    "id": 4,
+    "firstName": "Clement",
+    "middleName": "M",
+    "lastName": "Mihailescu",
+    "email": "user4@gmail.com",
+    "address": "US",
+    "phone": "9684456321",
+    "role": 3,
+    "dob": "1973-02-12"
+  },
+  {
+    "id": 5,
+    "firstName": "Charles",
+    "middleName": "",
+    "lastName": "Karen",
+    "email": "user5@gmail.com",
+    "address": "US",
+    "phone": "8449632156",
+    "role": 3,
+    "dob": "1986-12-05"
   }
 ]
