@@ -20,7 +20,7 @@ export class UserTableComponent implements OnInit {
   roles = RolesArray;
   displayedColumns: string[] = [
     'firstName',
-    // 'middleName',
+    'middleName',
     'lastName',
     'email',
     'address',
