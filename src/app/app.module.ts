@@ -19,6 +19,7 @@ import { ContainerComponent } from './container/container.component';
 import { HeaderComponent } from './header/header.component';
 import { BulkActionComponent } from './bulk-action/bulk-action.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { RoleStringPipe } from './role-string.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UserTableComponent } from './user-table/user-table.component';
     HeaderComponent,
     BulkActionComponent,
     UserTableComponent,
+    RoleStringPipe,
   ],
   imports: [
     BrowserModule,
