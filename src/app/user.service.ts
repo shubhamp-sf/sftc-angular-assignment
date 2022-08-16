@@ -16,7 +16,9 @@ export class UserService {
 
   updateAll(users: UserElement[]) {
     this.users = users;
+    this.searchQuery = '';
   }
+
   patch(id: UserId, updatedData: Partial<UserElement>) {
     this.users = this.users.map((user) => {
       if (id !== user.id) {
@@ -26,9 +28,11 @@ export class UserService {
       return { ...user, ...updatedData };
     });
   }
+
   delete(userId: UserId) {
     this.users = this.users.filter((user) => user.id !== userId);
   }
+
   filter(compareFunction: (user: UserElement) => boolean) {
     this.users = this.users.filter(compareFunction);
   }

@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -45,7 +50,8 @@ export class UserTableComponent implements OnInit {
   constructor(
     public userService: UserService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -69,8 +75,6 @@ export class UserTableComponent implements OnInit {
       dob: [user.dob, Validators.required],
       role: [user.role, Validators.required],
     });
-
-    console.log(this.editMode[user.id]);
   }
   deactiveEditMode(userId: UserId) {
     delete this.editMode[userId];
@@ -83,8 +87,15 @@ export class UserTableComponent implements OnInit {
     this.userService.patch(userId, this.editMode[userId].value);
     this.deactiveEditMode(userId);
   }
-  deleteUser(userId: UserId) {
-    this.userService.delete(userId);
+  deleteUser(user: UserElement) {
+    let dialogRef = this.dialog.open(DeleteUserDialog, {
+      data: { email: user.email },
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean | undefined) => {
+      if (confirmed === true) {
+        this.userService.delete(user.id);
+      }
+    });
   }
   shouldHide(user: UserElement) {
     let q = this.userService.searchQuery.toLowerCase();
@@ -107,4 +118,13 @@ export class UserTableComponent implements OnInit {
     }
     return false;
   }
+}
+
+// Delete User Dialog
+@Component({
+  selector: 'delete-user-dialog',
+  templateUrl: 'delete-user-dialog.html',
+})
+export class DeleteUserDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { email: string }) {}
 }

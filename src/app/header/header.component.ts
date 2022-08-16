@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   loadData() {
     this.loadButtonLabel = 'Refresh Data';
     this.userService.getAll().subscribe((data) => {
-      console.log(data);
       this.userService.updateAll(data);
     });
   }

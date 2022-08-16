@@ -9,8 +9,7 @@
           placeholder=""
           class="search-input"
           name="query"
-          [(ngModel)]="query"
-          (ngModelChange)="queryChange($event)"
+          [(ngModel)]="userService.searchQuery"
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>

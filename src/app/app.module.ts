@@ -15,12 +15,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // cutom components
 import { ContainerComponent } from './container/container.component';
 import { HeaderComponent } from './header/header.component';
 import { BulkActionComponent } from './bulk-action/bulk-action.component';
-import { UserTableComponent } from './user-table/user-table.component';
+import {
+  DeleteUserDialog,
+  UserTableComponent,
+} from './user-table/user-table.component';
 import { RoleStringPipe } from './role-string.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -31,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     BulkActionComponent,
     UserTableComponent,
+    DeleteUserDialog,
     RoleStringPipe,
   ],
   imports: [
@@ -45,6 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatTableModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,

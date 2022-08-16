@@ -185,7 +185,7 @@
           mat-icon-button
           color="warn"
           aria-label="Delete User"
-          (click)="deleteUser(element.id)"
+          (click)="deleteUser(element)"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -219,6 +219,6 @@
   ></tr>
 
   <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No Users</td>
+    <td class="mat-cell">No Users "Click "Load Data" above to fetch users."</td>
   </tr>
 </table>
