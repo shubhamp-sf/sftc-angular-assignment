@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Role } from './user-table/user-table.component';
+import { Role } from './user.service';
 
 @Pipe({
   name: 'roleString',

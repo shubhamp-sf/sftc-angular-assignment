@@ -1,46 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import {
+  RolesArray,
+  UserElement,
+  UserFormControls,
+  UserId,
+  UserService,
+} from '../user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-export enum Role {
-  SuperAdmin = 1,
-  Admin,
-  Subscriber,
-}
-export const RolesArray = [Role.SuperAdmin, Role.Admin, Role.Subscriber];
-export const UserFormControls = (defaults: Partial<UserElement> = {}) => ({
-  firstName: [defaults.firstName || '', Validators.required],
-  middleName: [defaults.middleName || ''],
-  lastName: [defaults.lastName || '', Validators.required],
-  email: [defaults.email || '', [Validators.required, Validators.email]],
-  address: [defaults.address || '', [Validators.required]],
-  phone: [
-    defaults.phone || '',
-    [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(10),
-      Validators.pattern('[0-9]*'),
-    ],
-  ],
-  dob: [defaults.dob || '', Validators.required],
-  role: [defaults.role || Role.Subscriber, Validators.required],
-});
-export type UserId = number;
-export interface UserElement {
-  id: UserId;
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  email: string;
-  address: string;
-  phone: number;
-  dob: string;
-  role: Role;
-}
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-table',

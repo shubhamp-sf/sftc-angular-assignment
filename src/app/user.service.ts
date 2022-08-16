@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { UserElement, UserId } from './user-table/user-table.component';
+import { Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -53,4 +53,41 @@ export class UserService {
   filter(compareFunction: (user: UserElement) => boolean) {
     this.users = this.users.filter(compareFunction);
   }
+}
+
+export enum Role {
+  SuperAdmin = 1,
+  Admin,
+  Subscriber,
+}
+export const RolesArray = [Role.SuperAdmin, Role.Admin, Role.Subscriber];
+export const UserFormControls = (defaults: Partial<UserElement> = {}) => ({
+  firstName: [defaults.firstName || '', Validators.required],
+  middleName: [defaults.middleName || ''],
+  lastName: [defaults.lastName || '', Validators.required],
+  email: [defaults.email || '', [Validators.required, Validators.email]],
+  address: [defaults.address || '', [Validators.required]],
+  phone: [
+    defaults.phone || '',
+    [
+      Validators.required,
+      Validators.maxLength(10),
+      Validators.minLength(10),
+      Validators.pattern('[0-9]*'),
+    ],
+  ],
+  dob: [defaults.dob || '', Validators.required],
+  role: [defaults.role || Role.Subscriber, Validators.required],
+});
+export type UserId = number;
+export interface UserElement {
+  id: UserId;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  phone: number;
+  dob: string;
+  role: Role;
 }

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RolesArray, UserFormControls } from './user-table.component';
+import { RolesArray, UserFormControls } from '../user.service';
 
 @Component({
   selector: 'new-user-dialog',
