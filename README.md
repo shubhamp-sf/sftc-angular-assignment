@@ -7,7 +7,7 @@ Angular Features Used:
 - Components
 - Services
 - Reactive Forms
-- Pipess
+- Pipes
 - DI
 - Angular Material
 - HTTPClient
