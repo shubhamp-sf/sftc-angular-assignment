@@ -27,6 +27,7 @@ import {
 } from './user-table/user-table.component';
 import { RoleStringPipe } from './role-string.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewUserDialog } from './user-table/new-user-dialog';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BulkActionComponent,
     UserTableComponent,
     DeleteUserDialog,
+    NewUserDialog,
     RoleStringPipe,
   ],
   imports: [

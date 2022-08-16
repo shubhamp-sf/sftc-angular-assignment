@@ -1,11 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -14,7 +10,25 @@ export enum Role {
   Admin,
   Subscriber,
 }
-
+export const RolesArray = [Role.SuperAdmin, Role.Admin, Role.Subscriber];
+export const UserFormControls = (defaults: Partial<UserElement> = {}) => ({
+  firstName: [defaults.firstName || '', Validators.required],
+  middleName: [defaults.middleName || ''],
+  lastName: [defaults.lastName || '', Validators.required],
+  email: [defaults.email || '', [Validators.required, Validators.email]],
+  address: [defaults.address || '', [Validators.required]],
+  phone: [
+    defaults.phone || '',
+    [
+      Validators.required,
+      Validators.maxLength(10),
+      Validators.minLength(10),
+      Validators.pattern('[0-9]*'),
+    ],
+  ],
+  dob: [defaults.dob || '', Validators.required],
+  role: [defaults.role || Role.Subscriber, Validators.required],
+});
 export type UserId = number;
 export interface UserElement {
   id: UserId;
@@ -34,7 +48,7 @@ export interface UserElement {
   styleUrls: ['./user-table.component.css'],
 })
 export class UserTableComponent implements OnInit {
-  roles = [Role.SuperAdmin, Role.Admin, Role.Subscriber];
+  roles = RolesArray;
   displayedColumns: string[] = [
     'firstName',
     // 'middleName',
@@ -47,6 +61,7 @@ export class UserTableComponent implements OnInit {
     'action',
   ];
   editMode: { [key: UserId]: FormGroup } = {};
+
   constructor(
     public userService: UserService,
     private fb: FormBuilder,
@@ -56,25 +71,7 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit(): void {}
   activateEditMode(user: UserElement) {
-    // this.editMode[user.id] = cloneDeep(user);
-    this.editMode[user.id] = this.fb.group({
-      firstName: [user.firstName, Validators.required],
-      middleName: [user.middleName],
-      lastName: [user.lastName, Validators.required],
-      email: [user.email, [Validators.required, Validators.email]],
-      address: [user.address, [Validators.required]],
-      phone: [
-        user.phone,
-        [
-          Validators.required,
-          Validators.maxLength(10),
-          Validators.minLength(10),
-          Validators.pattern('[0-9]*'),
-        ],
-      ],
-      dob: [user.dob, Validators.required],
-      role: [user.role, Validators.required],
-    });
+    this.editMode[user.id] = this.fb.group(UserFormControls(user));
   }
   deactiveEditMode(userId: UserId) {
     delete this.editMode[userId];
