@@ -1,42 +1,214 @@
 <table mat-table [dataSource]="userService.users" class="mat-elevation-z8">
+  <!-- First Name -->
   <ng-container matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef>First Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.firstName }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
+  <!-- Middle Name -->
   <ng-container matColumnDef="middleName">
     <th mat-header-cell *matHeaderCellDef>Middle Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.middleName }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.middleName || "-" }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="middleName" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="lastName">
     <th mat-header-cell *matHeaderCellDef>Last Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.lastName || "-" }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>Email</th>
-    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.email || "-" }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="email" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="address">
     <th mat-header-cell *matHeaderCellDef>Address</th>
-    <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.address || "-" }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="address" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="phone">
     <th mat-header-cell *matHeaderCellDef>Phone</th>
-    <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.phone || "-" }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input matInput formControlName="phone" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="dob">
     <th mat-header-cell *matHeaderCellDef>DOB</th>
-    <td mat-cell *matCellDef="let element">{{ element.dob }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.dob | date }}
+      </ng-container>
+
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field
+          appearance="outline"
+          class="mat-form-field-without-label"
+        >
+          <input type="date" matInput formControlName="dob" />
+        </mat-form-field>
+      </ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="role">
     <th mat-header-cell *matHeaderCellDef>Role</th>
-    <td mat-cell *matCellDef="let element">{{ element.role | roleString }}</td>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        {{ element.role | roleString }}
+      </ng-container>
+      <ng-container
+        *ngIf="editMode[element.id]"
+        [formGroup]="editMode[element.id]"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{ role | roleString }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!editMode[element.id]">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Edit User"
+          (click)="activateEditMode(element)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Delete User"
+          (click)="deleteUser(element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="editMode[element.id]">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Save Changes"
+          (click)="saveChanges(element.id)"
+        >
+          <mat-icon>save</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Discard Changes"
+          (click)="deactiveEditMode(element.id)"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </ng-container>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

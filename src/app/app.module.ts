@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 // cutom components
 import { ContainerComponent } from './container/container.component';
@@ -20,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
 import { BulkActionComponent } from './bulk-action/bulk-action.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { RoleStringPipe } from './role-string.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { RoleStringPipe } from './role-string.pipe';
     MatIconModule,
     MatDividerModule,
     MatTableModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
