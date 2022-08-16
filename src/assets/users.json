@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "James",
+    "middleName": "S",
+    "lastName": "Mary",
+    "email": "user1@gmail.com",
+    "address": "US",
+    "phone": "8564772588",
+    "role": 1,
+    "dob": "2008-07-22"
+  },
+  {
+    "firstName": "Robert",
+    "middleName": "T",
+    "lastName": "Patricia",
+    "email": "user2@gmail.com",
+    "address": "UK",
+    "phone": "9987751651",
+    "role": 2,
+    "dob": "2001-07-22"
+  },
+  {
+    "firstName": "John",
+    "middleName": "N",
+    "lastName": "Jennifer",
+    "email": "user2@gmail.com",
+    "address": "India",
+    "phone": "8500035699",
+    "role": 3,
+    "dob": "1999-07-01"
+  }
+]

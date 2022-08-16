@@ -9,9 +9,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.flex-spacer {
-  flex: 1 1 auto;
-}
 .flex-container {
   display: flex;
 }
