@@ -14,8 +14,13 @@ export class BulkActionComponent implements OnInit {
   ngOnInit(): void {}
   openNewUserDialog() {
     let dialogRef = this.dialog.open(NewUserDialog);
-    dialogRef.afterClosed().subscribe((user: UserElement) => {
-      this.userService.add(user);
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe((user: UserElement | undefined | false) => {
+        if (!user) {
+          return;
+        }
+        this.userService.add(user);
+      });
   }
 }
