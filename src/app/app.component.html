@@ -2,6 +2,6 @@
   <app-header></app-header>
   <mat-divider></mat-divider>
   <br />
-  <app-bulk-action></app-bulk-action>
-  <app-user-table></app-user-table>
+  <app-bulk-action *ngIf="userService.dirty"></app-bulk-action>
+  <app-user-table *ngIf="userService.dirty"></app-user-table>
 </app-container>

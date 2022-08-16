@@ -1,10 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  EventEmitter,
-  Injectable,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { UserElement, UserId } from './user-table/user-table.component';
 
 @Injectable({
@@ -14,13 +9,14 @@ export class UserService {
   _users: UserElement[] = [];
   searchQuery: string = '';
   userUpdate = new EventEmitter();
+  dirty = false;
   constructor(private http: HttpClient) {}
 
   getAll() {
     return this.http.get<UserElement[]>('assets/users.json');
   }
   set users(newData: UserElement[]) {
-    console.log('setter');
+    this.dirty = true;
     this._users = newData;
   }
   get users() {
@@ -33,7 +29,6 @@ export class UserService {
       newId = this.users[this.users.length - 1].id + 1;
     }
     this.users = [...this.users, { ...user, id: newId }];
-    console.log(this.users);
   }
 
   updateAll(users: UserElement[]) {
